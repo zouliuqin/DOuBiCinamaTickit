@@ -59,15 +59,15 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter{
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public T getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return data.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return 0;
+		return position;
 	}
 
 	

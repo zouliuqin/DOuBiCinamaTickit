@@ -4,32 +4,33 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.liucheng.administrator.doubicinamatickit.entity.IUrl;
+import com.liucheng.administrator.doubicinamatickit.entity.MovieBoxOffice;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieNews;
 
 import java.io.IOException;
-
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by 邹柳钦 on 2017/11/29 0029.
+ * Created by 邹柳钦 on 2017/11/30 0030.
  */
 
-public class NewsData {
+public class BoxOfficeData {
+
     /**
-     * 接口回调
+     * 票房接口回调
      */
-    public interface NewsLoadListener {
-        void onNewsLoadEnd(MovieNews movieNews);
+    public interface BoxOfficeLoadListener {
+        void onBoxOfficeLoadEnd(MovieBoxOffice movieBoxOffice);
     }
 
     /**
-     * 获取电影资讯数据源
+     * 获取电影票房数据源
      */
-    public static void getNewsData(final NewsLoadListener loadListener, final int pageNumber) {
-        Log.i("TAG", "getNewsData: ");
+    public static void getNewsData(final BoxOfficeLoadListener loadListener) {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -39,16 +40,16 @@ public class NewsData {
                     //创建request实例
                     Request request = new Request.Builder()
                             //设置url
-                            .url(IUrl.MOVIES_NEWS + pageNumber)
+                            .url(IUrl.BOX_OFFICE)
                             .build();
                     Response response = client.newCall(request).execute();
                     String data = response.body().string();
 
                     Gson gson = new Gson();
-                    MovieNews movieNews = gson.fromJson(data, MovieNews.class);
+                    MovieBoxOffice movieBoxOffice = gson.fromJson(data, MovieBoxOffice.class);
 
                     //接口回调
-                    loadListener.onNewsLoadEnd(movieNews);
+                    loadListener.onBoxOfficeLoadEnd(movieBoxOffice);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -57,6 +58,5 @@ public class NewsData {
         }).start();
 
     }
-
 
 }
