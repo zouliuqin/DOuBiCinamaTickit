@@ -7,13 +7,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.liucheng.administrator.doubicinamatickit.R;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieNews;
 import com.liucheng.administrator.doubicinamatickit.module.find.adapter.NewsAdapter;
 import com.liucheng.administrator.doubicinamatickit.module.find.data.NewsData;
+import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoaderInterface;
 
 import java.util.ArrayList;
@@ -33,6 +36,13 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
     Unbinder unbinder;
     @BindView(R.id.lv_news)
     ListView lvNews;
+    //新闻页码 最大为10
+    private  int pageNumber=1;
+
+    /**
+     * setImages
+     */
+        List<String>   images=new ArrayList<>();
     /**
      * 新闻资讯数据
      */
@@ -42,6 +52,7 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
      * 新闻资讯adapter
      */
     private NewsAdapter adapter;
+    private List<String> titles=new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,19 +62,25 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         unbinder = ButterKnife.bind(this, view);
         //获取新闻资讯数据
-        NewsData.getNewsData(this);
+        NewsData.getNewsData(this,pageNumber);
        // initUi();
         return view;
     }
 
 
-    private void initUi() {
+    private void setBanner() {
 
 
         //设置图片加载器
         bvBanner.setImageLoader(new GlideImageLoader());
+        //设置轮播样式（默认为CIRCLE_INDICATOR）
+        bvBanner.setBannerStyle( BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        //设置轮播图片间隔时间（单位毫秒，默认为2000）
+        bvBanner.setDelayTime(3000);
+
+        bvBanner.setBannerTitles(titles);
         //设置图片集合
-       // bvBanner.setImages();
+        bvBanner.setImages(images);
         //banner设置方法全部调用完毕时最后调用
         bvBanner.start();
 
@@ -100,12 +117,23 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
     @Override
     public void onWeathersLoadEnd(MovieNews movieNews) {
         //获取新闻资讯数组
-
         newsLists = movieNews.getNewsList();
-
         Log.i("ATG", "onWeathersLoadEnd: " + newsLists.get(0));
-//        adapter = new NewsAdapter(getActivity(), newsLists);
-//        lvNews.setAdapter(adapter);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter = new NewsAdapter(getActivity(), newsLists);
+                lvNews.setAdapter(adapter);
+                for (int i = 0 ; i <4;i++) {
+                    images.add(newsLists.get(i).getImage()) ;
+                    titles.add(newsLists.get(i).getTitle2());
+                }
+                setBanner();
+            }
+        });
+
+
+
 
 
     }
@@ -126,7 +154,7 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
             //            Glide.with(context).load(path).into(imageView);
 
             //Picasso 加载图片简单用法
-            // Picasso.with(context).load(path.toString()).into(imageView);
+             Picasso.with(context).load(path.toString()).into((ImageView) imageView);
             //
             //            //用fresco加载图片简单用法，记得要写下面的createImageView方法
             //            Uri uri = Uri.parse((String) path);

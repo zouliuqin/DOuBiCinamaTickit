@@ -21,7 +21,7 @@ public class RankingFragment extends Fragment implements NewsData.NewsLoadListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        NewsData.getNewsData(this);
+       // NewsData.getNewsData(this);
         return inflater.inflate(R.layout.fragment_ranking, container, false);
         //获取新闻资讯数据
 
@@ -33,7 +33,7 @@ public class RankingFragment extends Fragment implements NewsData.NewsLoadListen
         //获取新闻资讯数组
 
 
-        Log.i("ATG", "onWeathersLoadEnd: " + movieNews.getNewsList().get(0));
+        //Log.i("ATG", "onWeathersLoadEnd: " + movieNews.getNewsList().get(0));
         //        adapter = new NewsAdapter(getActivity(), newsLists);
         //        lvNews.setAdapter(adapter);
 

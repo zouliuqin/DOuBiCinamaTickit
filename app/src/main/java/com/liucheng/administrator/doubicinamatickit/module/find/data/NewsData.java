@@ -28,7 +28,7 @@ public class NewsData {
     /**
      * 获取电影资讯数据源
      */
-    public static void getNewsData(final NewsLoadListener loadListener) {
+    public static void getNewsData(final NewsLoadListener loadListener, final int pageNumber) {
         Log.i("TAG", "getNewsData: ");
         new Thread(new Runnable() {
             @Override
@@ -38,7 +38,8 @@ public class NewsData {
                     OkHttpClient client = new OkHttpClient();
                     //创建request实例
                     Request request = new Request.Builder()
-                            .url(IUrl.MOVIES_NEWS + "2")
+                            //设置url
+                            .url(IUrl.MOVIES_NEWS + pageNumber)
                             .build();
                     Response response = client.newCall(request).execute();
                     String data = response.body().string();
