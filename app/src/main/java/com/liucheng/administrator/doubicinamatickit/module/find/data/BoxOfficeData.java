@@ -48,8 +48,13 @@ public class BoxOfficeData {
                     Gson gson = new Gson();
                     MovieBoxOffice movieBoxOffice = gson.fromJson(data, MovieBoxOffice.class);
 
-                    //接口回调
-                    loadListener.onBoxOfficeLoadEnd(movieBoxOffice);
+                    if (movieBoxOffice!=null){
+
+                        //接口回调
+                        loadListener.onBoxOfficeLoadEnd(movieBoxOffice);
+
+                    }
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
