@@ -2,8 +2,10 @@ package com.liucheng.administrator.doubicinamatickit.module.find;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +65,14 @@ public class RankingFragment extends Fragment implements BoxOfficeData.BoxOffice
         srlRanking.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //加载票房数据
-                BoxOfficeData.getNewsData(RankingFragment.this);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //加载票房数据
+                        BoxOfficeData.getNewsData(RankingFragment.this);
+                        //swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
                 //停止更新
                 srlRanking.setRefreshing(false);
             }
@@ -76,6 +84,8 @@ public class RankingFragment extends Fragment implements BoxOfficeData.BoxOffice
     @Override
     public void onBoxOfficeLoadEnd(MovieBoxOffice movieBoxOffice) {
 
+        Log.i("TAG", "movieBoxOffice: "+movieBoxOffice);
+        Log.i("TAG", "boxOffices: "+boxOffices);
         //清空数据
         boxOffices.clear();
         //获得到排行榜数据
