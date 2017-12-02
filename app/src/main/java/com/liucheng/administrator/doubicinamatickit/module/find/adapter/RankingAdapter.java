@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.liucheng.administrator.doubicinamatickit.R;
 import com.liucheng.administrator.doubicinamatickit.adapter.BaseAdapter;
+import com.liucheng.administrator.doubicinamatickit.entity.BoxOffice;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieBoxOffice;
 
 import java.util.List;
@@ -19,8 +20,8 @@ import butterknife.ButterKnife;
  * Created by 邹柳钦 on 2017/11/30 0030.
  */
 
-public class RankingAdapter extends BaseAdapter<MovieBoxOffice.DataBean> {
-    public RankingAdapter(Context context, List<MovieBoxOffice.DataBean> data) {
+public class RankingAdapter extends BaseAdapter<BoxOffice.MoviesBean> {
+    public RankingAdapter(Context context, List<BoxOffice.MoviesBean> data) {
         super(context, data);
     }
 
@@ -36,12 +37,12 @@ public class RankingAdapter extends BaseAdapter<MovieBoxOffice.DataBean> {
             holer = (ViewHolder) view.getTag();
         }
 
-        //设置信息
-        holer.tvMovieName.setText(getItem(i).getMovieName());
-        holer.tvBoxOffice.setText(getItem(i).getBoxOffice());
-        holer.tvSumBoxOffice.setText(getItem(i).getSumBoxOffice());
-        holer.tvMovieDay.setText(getItem(i).getMovieDay()+"天");
-        holer.tvBoxPer.setText(getItem(i).getBoxPer()+"%");
+//        //设置信息
+//        holer.tvMovieName.setText(getItem(i).getMovieName());
+//        holer.tvBoxOffice.setText(getItem(i).getBoxOffice());
+//        holer.tvSumBoxOffice.setText(getItem(i).getSumBoxOffice());
+//        holer.tvMovieDay.setText(getItem(i).getMovieDay()+"天");
+//        holer.tvBoxPer.setText(getItem(i).getBoxPer()+"%");
         return view;
 
     }

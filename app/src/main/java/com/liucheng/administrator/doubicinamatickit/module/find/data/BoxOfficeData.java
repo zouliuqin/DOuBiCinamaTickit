@@ -3,6 +3,7 @@ package com.liucheng.administrator.doubicinamatickit.module.find.data;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.liucheng.administrator.doubicinamatickit.entity.BoxOffice;
 import com.liucheng.administrator.doubicinamatickit.entity.IUrl;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieBoxOffice;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieNews;
@@ -23,7 +24,7 @@ public class BoxOfficeData {
      * 票房接口回调
      */
     public interface BoxOfficeLoadListener {
-        void onBoxOfficeLoadEnd(MovieBoxOffice movieBoxOffice);
+        void onBoxOfficeLoadEnd(BoxOffice boxOffice);
     }
 
     /**
@@ -46,12 +47,12 @@ public class BoxOfficeData {
                     String data = response.body().string();
 
                     Gson gson = new Gson();
-                    MovieBoxOffice movieBoxOffice = gson.fromJson(data, MovieBoxOffice.class);
+                    BoxOffice boxOffice = gson.fromJson(data, BoxOffice.class);
 
-                    if (movieBoxOffice!=null){
+                    if (boxOffice!=null){
 
                         //接口回调
-                        loadListener.onBoxOfficeLoadEnd(movieBoxOffice);
+                        loadListener.onBoxOfficeLoadEnd(boxOffice);
 
                     }
 

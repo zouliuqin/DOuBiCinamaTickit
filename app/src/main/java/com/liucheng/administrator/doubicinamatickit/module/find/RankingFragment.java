@@ -1,22 +1,28 @@
 package com.liucheng.administrator.doubicinamatickit.module.find;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.liucheng.administrator.doubicinamatickit.R;
+import com.liucheng.administrator.doubicinamatickit.entity.BoxOffice;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieBoxOffice;
 import com.liucheng.administrator.doubicinamatickit.module.find.adapter.RankingAdapter;
 import com.liucheng.administrator.doubicinamatickit.module.find.data.BoxOfficeData;
 import com.liucheng.administrator.doubicinamatickit.module.find.data.NewsData;
+import com.liucheng.administrator.doubicinamatickit.sql.MyDataBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +42,7 @@ public class RankingFragment extends Fragment implements BoxOfficeData.BoxOffice
     SwipeRefreshLayout srlRanking;
 
     //票房数据
-    private List<MovieBoxOffice.DataBean> boxOffices = new ArrayList<>();
+    private List<BoxOffice.MoviesBean> boxOffices = new ArrayList<>();
     private RankingAdapter adapter;
 
     @Override
@@ -45,6 +51,8 @@ public class RankingFragment extends Fragment implements BoxOfficeData.BoxOffice
 
         View view = inflater.inflate(R.layout.fragment_ranking, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+
         initUi();
         //获取排行榜数据
         BoxOfficeData.getNewsData(this);
@@ -78,18 +86,48 @@ public class RankingFragment extends Fragment implements BoxOfficeData.BoxOffice
             }
         });
 
+
+        lvRanking.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//               //获取点击的电影名称
+//
+//              String[]  movieName={boxOffices.get(i-1).getMovieName()};
+//               String[]  movieId={"movieId"};
+//          //    String dataSelection = ContactsContract.Data.RAW_CONTACT_ID + "=?";
+//
+//////                //通过电影名称在数据库查询 电影ID
+//               SQLiteDatabase db= new MyDataBaseHelper(getActivity(),"IsHit.db",null,1).getWritableDatabase();
+//                Cursor cursor= db.query("IsHit",movieId,"movieName"+"=?",movieName,null,null,null);
+//              if (cursor.moveToFirst()) {
+//                  for (;!cursor.isAfterLast();cursor.moveToNext()){
+//                     String Id= cursor.getString(cursor.getColumnIndex("movieId"));
+//                       Log.i("TAG", "onItemClick: "+Id);
+//                       Toast.makeText(getActivity(), ""+Id, Toast.LENGTH_SHORT).show();
+//
+//                  }
+//               }
+//               cursor.close();
+
+            }
+       });
+
     }
 
 
     @Override
-    public void onBoxOfficeLoadEnd(MovieBoxOffice movieBoxOffice) {
+    public void onBoxOfficeLoadEnd(BoxOffice boxOffice) {
 
-        Log.i("TAG", "movieBoxOffice: "+movieBoxOffice);
+        Log.i("TAG", "movieBoxOffice: "+boxOffice);
         Log.i("TAG", "boxOffices: "+boxOffices);
         //清空数据
         boxOffices.clear();
         //获得到排行榜数据
-        boxOffices.addAll(movieBoxOffice.getData());
+        boxOffices.addAll(boxOffice.getMovies());
+        for (BoxOffice.MoviesBean office : boxOffices) {
+            Log.i("TAG", "onBoxOfficeLoadEnd: "+office.toString());
+
+        }
         if (boxOffices != null) {
             //数据适配
             getActivity().runOnUiThread(new Runnable() {
