@@ -11,13 +11,19 @@
 
 
     <TextView
-        android:id="@+id/tv_header_movie_name"
-        android:layout_width="80dp"
+        android:id="@+id/tv_header_movie_ranking"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         android:gravity="center|left"
+        android:text="排行" />
+    <TextView
+        android:id="@+id/tv_header_movie_name"
+        android:layout_width="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="影片" />
 
     <TextView
@@ -25,38 +31,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         android:gravity="center"
         android:layout_weight="1"
-        android:text="实时票房(万)" />
+        android:text="日票房（万）" />
 
     <TextView
         android:id="@+id/tv_header_sum_box_office"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="总票房(万)" />
-
+        android:text="累积票房" />
     <TextView
-        android:id="@+id/tv_header_movie_day"
+        android:id="@+id/tv_header_sum_box_grade"
         android:layout_width="0dp"
-        android:layout_gravity="center"
-
-        android:gravity="center"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="上映天数" />
-
-    <TextView
-        android:id="@+id/tv_header_box_per"
-        android:layout_width="0dp"
         android:layout_gravity="center"
-
         android:gravity="center"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="票房占比" />
+        android:text="评分" />
+
+
+
+
 </LinearLayout>

@@ -2,6 +2,9 @@ package com.liucheng.administrator.doubicinamatickit.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
+import com.liucheng.administrator.doubicinamatickit.util.StringUtil;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
@@ -19,6 +22,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
 
     }
 

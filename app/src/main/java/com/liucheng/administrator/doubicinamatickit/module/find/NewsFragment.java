@@ -17,6 +17,7 @@ import com.liucheng.administrator.doubicinamatickit.R;
 import com.liucheng.administrator.doubicinamatickit.entity.MovieNews;
 import com.liucheng.administrator.doubicinamatickit.module.find.adapter.NewsAdapter;
 import com.liucheng.administrator.doubicinamatickit.module.find.data.NewsData;
+import com.liucheng.administrator.doubicinamatickit.util.StringUtil;
 import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -71,6 +72,7 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
         //获取新闻资讯数据
         NewsData.getNewsData(this, pageNumber);
          initUi();
+        Log.i("TAG", "onCreate: "+ StringUtil.BoxOfficeString("累计实时票房1.03(亿元)"));
         return view;
     }
 
@@ -196,7 +198,7 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
             //            Glide.with(context).load(path).into(imageView);
 
             //Picasso 加载图片简单用法
-        //    Picasso.with(context).load(path.toString()).into((ImageView) imageView);
+            Picasso.with(context).load(path.toString()).into((ImageView) imageView);
             //
             //            //用fresco加载图片简单用法，记得要写下面的createImageView方法
             //            Uri uri = Uri.parse((String) path);
