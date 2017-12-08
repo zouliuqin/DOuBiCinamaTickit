@@ -49,7 +49,7 @@ public class BoxOfficeData {
                     Gson gson = new Gson();
                     BoxOffice boxOffice = gson.fromJson(data, BoxOffice.class);
 
-                    if (boxOffice!=null){
+                    if (boxOffice!=null&&loadListener!=null){
 
                         //接口回调
                         loadListener.onBoxOfficeLoadEnd(boxOffice);

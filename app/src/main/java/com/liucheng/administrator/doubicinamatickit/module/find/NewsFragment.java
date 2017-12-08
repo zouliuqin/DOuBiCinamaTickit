@@ -72,7 +72,7 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
         //获取新闻资讯数据
         NewsData.getNewsData(this, pageNumber);
          initUi();
-        Log.i("TAG", "onCreate: "+ StringUtil.BoxOfficeString("累计实时票房1.03(亿元)"));
+
         return view;
     }
 
@@ -157,7 +157,7 @@ public class NewsFragment extends Fragment implements NewsData.NewsLoadListener 
             newsLists.addAll(0,movieNews.getNewsList());
         }
 
-        Log.i("ATG", "onWeathersLoadEnd: " + newsLists.get(0));
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

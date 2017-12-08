@@ -29,7 +29,7 @@ public class NewsData {
      * 获取电影资讯数据源
      */
     public static void getNewsData(final NewsLoadListener loadListener, final int pageNumber) {
-        Log.i("TAG", "getNewsData: ");
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -47,8 +47,12 @@ public class NewsData {
                     Gson gson = new Gson();
                     MovieNews movieNews = gson.fromJson(data, MovieNews.class);
 
-                    //接口回调
-                    loadListener.onNewsLoadEnd(movieNews);
+
+                    if (loadListener!=null&&movieNews!=null){
+                        //接口回调
+                        loadListener.onNewsLoadEnd(movieNews);
+                    }
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
