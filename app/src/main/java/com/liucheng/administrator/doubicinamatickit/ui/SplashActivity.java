@@ -40,23 +40,10 @@ public class SplashActivity extends Activity implements IsHitData.IsHitLoadListe
         setContentView(R.layout.activity_splash);
         initialUI();
 
-        //初始化Bmob
-        //初始化自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
-        BmobConfig config = new BmobConfig.Builder(this)
-                ////设置appkey
-                .setApplicationId("b05ee63033093ab6510cdefeaf7af167")
-                ////请求超时时间（单位为秒）：默认15s
-                .setConnectTimeout(30)
-                ////文件分片上传时每片的大小（单位字节），默认512*1024
-                .setUploadBlockSize(1024 * 1024)
-                ////文件的过期时间(单位为秒)：默认1800s
-                .setFileExpiration(2500)
-                .build();
-        Bmob.initialize(config);
 
 
         //初始化正在热映电影数据,设置偏好设置保存在本地,用于票房榜查询电影详情
-        initIsHit();
+        //initIsHit();
 
 
     }

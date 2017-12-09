@@ -118,8 +118,6 @@ public class RankingFragment extends Fragment implements BoxOfficeData.BoxOffice
     @Override
     public void onBoxOfficeLoadEnd(BoxOffice boxOffice) {
 
-        Log.i("TAG", "movieBoxOffice: "+boxOffice);
-        Log.i("TAG", "boxOffices: "+boxOffices);
         //清空数据
         boxOffices.clear();
         //获得到排行榜数据

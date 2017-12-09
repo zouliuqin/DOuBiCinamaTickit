@@ -50,6 +50,8 @@ public class BoxOfficeData {
                     BoxOffice boxOffice = gson.fromJson(data, BoxOffice.class);
 
                     if (boxOffice!=null&&loadListener!=null){
+                        Log.i("TAG2", "run: "+loadListener);
+                        Log.i("TAG2", "run: "+boxOffice);
 
                         //接口回调
                         loadListener.onBoxOfficeLoadEnd(boxOffice);

@@ -57,14 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.but_login:
 
-//                BmobSMS.requestSMSCode("18707157352", "zouliuqin", new QueryListener<Integer>() {
-//                    @Override
-//                    public void done(Integer integer, BmobException e) {
-//                        if(e==null){//验证码发送成功
-//                            Log.i("bmob", "短信id："+integer);//用于查询本次短信发送详情
-//                        }
-//                    }
-//                });
 //
 //                BmobSMS.verifySmsCode("18707157352", "975968", new UpdateListener() {
 //                    @Override

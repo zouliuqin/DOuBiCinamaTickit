@@ -4,10 +4,19 @@ import cn.bmob.v3.BmobObject;
 
 
 public class User extends BmobObject {
+
     private  String username;
-    private  String passwork;
+    private  String password;
+    private  String  phoneNumber;
+    private String nickname;
 
+    public String getNickname() {
+        return nickname;
+    }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public String getUsername() {
         return username;
@@ -17,11 +26,19 @@ public class User extends BmobObject {
         this.username = username;
     }
 
-    public String getPasswork() {
-        return passwork;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswork(String passwork) {
-        this.passwork = passwork;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
