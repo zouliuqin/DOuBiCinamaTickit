@@ -85,7 +85,10 @@ public class FindPasswordActivity extends AppCompatActivity {
                     public void done(BmobException e) {
                         if (e == null) {
                             Toast.makeText(FindPasswordActivity.this, "密码重置成功", Toast.LENGTH_SHORT).show();
+
                             Log.i("smile", "密码重置成功");
+
+
                         } else {
                             Log.i("TAG", "重置失败：code =" + e.getErrorCode() + ",msg = " + e.getLocalizedMessage());
                         }
