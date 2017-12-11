@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.liucheng.administrator.doubicinamatickit.R;
 import com.liucheng.administrator.doubicinamatickit.view.ImageText;
@@ -55,6 +56,8 @@ public abstract class BaseFragment extends Fragment{
             imageButton_right.setVisibility(View.VISIBLE);
             imageButton_right.setImageResource(rightId);
         }
+
+
 
     }
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.liucheng.administrator.doubicinamatickit.R;
 
@@ -29,14 +30,6 @@ public class ImageText extends LinearLayout {
     public ImageText(Context context) {
         this(context, null);
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -65,6 +58,7 @@ public class ImageText extends LinearLayout {
             @Override
             public void onClick(View v) {
 
+
             }
         });
     }
@@ -86,5 +80,8 @@ public class ImageText extends LinearLayout {
         void onViewClick(View v);
 
     }
+
+
+
 
 }
