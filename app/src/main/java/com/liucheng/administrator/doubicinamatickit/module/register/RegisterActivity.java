@@ -135,6 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
                             bu.setPassword(password);
 
 
+
                             //注意：不能用save方法进行注册
                             bu.signUp(new SaveListener<User>() {
                                 @Override
